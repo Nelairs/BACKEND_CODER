@@ -81,12 +81,12 @@ class usuario   {
 
     addMascota(tipoMascota){  
 
-        let m   =   [''];
-        m   =   [tipoMascota];
-        [this.mascotas].push(m);
-        console.log(this.mascotas)
-        //this.mascotas   =   [];
-        //this.mascotas   =   arrayAux;
+        let arrayAux    =   [this.mascotas].concat(tipoMascota);
+        //console.log(this.mascotas)
+        this.mascotas   =   [];
+        this.mascotas   =   arrayAux;
+        arrayAux    =   [];
+        //[this.mascotas].push(tipoMascota);
 
     }
 
@@ -97,32 +97,41 @@ const   usr1AutorLibro  =   'Zarcort';
 
 const   usr1Name    =   'Santiago';
 const   usr1Last    =   'Etchenique';
-const   usr1Mascota =   'Perro';
+const   usr1Mascota =   ['Perro'];
 
 let usr1Libros   =   [new libro(usr1NombreLibro,  usr1AutorLibro)];
 
 let usr1    =   new usuario(usr1Name,   usr1Last,   usr1Libros, usr1Mascota);
 
+/* ---------------------------- MUESTRO MASCOTAS ---------------------------- */
+console.log('La cantidad de mascotas es:' );
+usr1.countMascotas;
+/* ------------------------------ AGREGO ANIMAL ----------------------------- */
 
 usr1.addMascota('Gato');
 
-//usr1.addMascota('Loro');
-
-//usr1.addMascota('Cabra');
-
+/* ------------------------- MUESTRO NOMBRE COMPLETO ------------------------ */
 usr1.fullName;
 
+/* -------------------- MUESTRO MASCOTAS LUEGO DE AGREGAR ------------------- */
+console.log('La cantidad de mascotas es:');
 usr1.countMascotas;
-
+/* --------------------------- MUESTRO LOS LIBROS --------------------------- */
+console.log('Los nombres de los libros son:\n')
 usr1.getBooksNames;
 
+
+/* ------------------------------ AGREGO LIBROS ----------------------------- */
 usr1.addBook('Alice in wonderland','Lewis Carrol');
 
 usr1.addBook('Gaturro','Nik');
 
 usr1.addBook('El mundo imaginario','Keri Smith');
 
-//usr1.getBooksNames;
+
+/* --------------------- MUESTRO LIBROS LUEGO DE AGREGAR -------------------- */
+console.log('Los nombres de los libros son:\n')
+usr1.getBooksNames;
 
 //console.table(usr1.libros,  ['nombreLibro']);
 
