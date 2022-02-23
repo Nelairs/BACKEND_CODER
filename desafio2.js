@@ -1,5 +1,7 @@
+const { Console } = require("console");
 const   fs  =   require("fs");
-const { fileURLToPath } = require("url");
+
+let numID   =   0;
 
 /* -------------------------------------------------------------------------- */
 /*                                   CLASES                                   */
@@ -14,43 +16,70 @@ class   contenedor{
 
     }
 
+
+/* -------------------------- CREACION DEL ARCHIVO -------------------------- */
     create(){
 
-        fs.writeFileSync(this.nombreArchivo,   '');
+        fs.writeFileSync(this.nombreArchivo,    '');
 
+        
     }
 
+
+/* ----- GUARDO OBJETOS PASADOS POR PARAMETRO Y DEVUELVO ID DE CADA UNO ----- */
     save(objetoGuardar){
 
+        objetoGuardar.id    =   numID;
+        let retID   =   numID;
+        numID++;
+
+        const   objTxt  =   this.getAll();
+
+        const   newObj  =   {objetoGuardar};
+
+        objTxt.push(newObj);
+
+
         try{
-            fs.appendFileSync(this.nombreArchivo,   `${JSON.stringify(objetoGuardar)}\n`);
+            fs.promises.appendFile(this.nombreArchivo,   JSON.stringify(objTxt,null,2));
+            console.log(retID);
         }   catch (err)  {
 
-            console.log(err)
+            console.log(err);
         }
         
     }
 
     getByID(){
 
-        const   readedData  =   fs.readFileSync(this.nombreArchivo, 'utf-8');
-        console.log(readedData);
-
-        const   readedDataParsed    =   fs.readFileSync(this.nombreArchivo, 'utf-8');
-        console.log(JSON.parse(readedDataParsed));
-
+        let   objByID  =   fs.readFileSync(this.nombreArchivo, 'utf-8');
+        console.log('AAAAAAAAAAAAAAAAAAAA');    //MOMENTO DESESPERACION
+        console.log(objByID);
     }
 
     getAll(){
 
+        try {
+            const   objTxt  =   fs.readFile(this.nombreArchivo, 'utf-8');
+
+            return  JSON.parse(objTxt); 
+        } catch (err) {
+            return  []
+        }
+       
     }
 
-    deleteByID(id){
+    deleteByID(){
 
     }
 
+
+/* --------------------------- DELETE DEL ARCHIVO --------------------------- */
     deleteAll(){
 
+        fs.unlinkSync(this.nombreArchivo);
+        
+        fs.writeFileSync(this.nombreArchivo,    '');
     }
 
 }
@@ -67,11 +96,12 @@ const   dataTest2   =   {
     modelo: 'Focus',  
     color:  'Celeste'};
 
+const   dataTest3   =   {
+    marca: 'CHEVROLET', 
+    modelo: 'Corsa',  
+    color:  'Gris'};
+
 let archivo1    =   new contenedor(archivoTest);
-
-//console.log(archivo1);
-
-//console.log(archivo1.nombreArchivo);
 
 /* --------------------------- CREACION DE ARCHIVO -------------------------- */
 archivo1.create();
@@ -82,5 +112,12 @@ archivo1.save(dataTest);
 /* ----------------------------- GUARDO DATA DOS ---------------------------- */
 archivo1.save(dataTest2);
 
+archivo1.save(dataTest3);
+
+
+/* -------------------------------------------------------------------------- */
+console.log(archivo1.getAll());                 
 
 archivo1.getByID();
+
+//archivo1.deleteAll();
