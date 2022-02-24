@@ -27,13 +27,13 @@ class   contenedor{
 
 
 /* ----- GUARDO OBJETOS PASADOS POR PARAMETRO Y DEVUELVO ID DE CADA UNO ----- */
-    save(objetoGuardar){
+    async   save(objetoGuardar){
 
         objetoGuardar.id    =   numID;
         let retID   =   numID;
         numID++;
 
-        const   objTxt  =   this.getAll();
+        const   objTxt  =   await   this.getAll();
 
         const   newObj  =   {objetoGuardar};
 
@@ -41,7 +41,7 @@ class   contenedor{
 
 
         try{
-            fs.promises.appendFile(this.nombreArchivo,   JSON.stringify(objTxt,null,2));
+            await   fs.promises.writeFile(this.nombreArchivo,   JSON.stringify(objTxt,null,2));
             console.log(retID);
         }   catch (err)  {
 
@@ -50,17 +50,22 @@ class   contenedor{
         
     }
 
-    getByID(){
+    async   getByID(seekID){
 
-        let   objByID  =   fs.readFileSync(this.nombreArchivo, 'utf-8');
-        console.log('AAAAAAAAAAAAAAAAAAAA');    //MOMENTO DESESPERACION
-        console.log(objByID);
+        let   objByID  =   await   this.getAll();
+        
+        objByID =   objByID[seekID];
+        
+        //const   filterID    =   objByID.objetoGuardar.marca;
+        
+        //console.log(objByID);
+        return  objByID.objetoGuardar;
     }
 
-    getAll(){
+    async   getAll(){
 
         try {
-            const   objTxt  =   fs.readFile(this.nombreArchivo, 'utf-8');
+            const   objTxt  =   await   fs.promises.readFile(this.nombreArchivo, 'utf-8');
 
             return  JSON.parse(objTxt); 
         } catch (err) {
@@ -69,13 +74,38 @@ class   contenedor{
        
     }
 
-    deleteByID(){
+    async   deleteByID(id){
 
+        let afterDelete =   [];
+
+        const   objTxt  =   await   this.getAll();
+
+        //await   this.deleteAll();        
+
+        for (let i = 0; i < objTxt.length; i++) {
+            
+            if (i  != id) {
+                
+                //console.log(objTxt[i]);
+                afterDelete.push(objTxt[i]);
+
+            }   else{continue}
+            
+            
+        }
+
+        try{
+            await   fs.promises.writeFile(this.nombreArchivo,   JSON.stringify(afterDelete,null,2));
+            
+        }   catch (err)  {
+
+            console.log(err);
+        }
     }
 
 
 /* --------------------------- DELETE DEL ARCHIVO --------------------------- */
-    deleteAll(){
+    async   deleteAll(){
 
         fs.unlinkSync(this.nombreArchivo);
         
@@ -83,7 +113,7 @@ class   contenedor{
     }
 
 }
-
+/* -------------------------------------------------------------------------- */
 const   archivoTest    =   'test1Desafio.txt';
 
 const   dataTest    =   {
@@ -103,21 +133,35 @@ const   dataTest3   =   {
 
 let archivo1    =   new contenedor(archivoTest);
 
+/* -------------------------------------------------------------------------- */
+
+
+
+async   function    pruebas(){
 /* --------------------------- CREACION DE ARCHIVO -------------------------- */
 archivo1.create();
 
 /* ----------------------------- GUARDO DATA UNO ---------------------------- */
-archivo1.save(dataTest);
+await   archivo1.save(dataTest);
 
 /* ----------------------------- GUARDO DATA DOS ---------------------------- */
-archivo1.save(dataTest2);
+await   archivo1.save(dataTest2);
 
-archivo1.save(dataTest3);
+/* ---------------------------- GUARDO DATA TRES ---------------------------- */
+await   archivo1.save(dataTest3);
 
 
-/* -------------------------------------------------------------------------- */
-console.log(archivo1.getAll());                 
+/* ------------------------------- METODOS GET ------------------------------ */
 
-archivo1.getByID();
+//console.log(await   archivo1.getAll());                                                //DEVUELVE TODO EL ARCHIVO
 
-//archivo1.deleteAll();
+//console.log('El ID buscado:'    +   JSON.stringify(await   archivo1.getByID(0)));     //ENVIAR EL ID A BUSCAR
+
+/* ----------------------------- METODOS DELETE ----------------------------- */
+
+//archivo1.deleteAll();             //BORRA TODO EL ARCHIVO
+
+//archivo1.deleteByID(2);           //PARA PROBAR DIFERENTES ARCHIVOS CAMBIAR NUMERO
+}
+
+pruebas();
