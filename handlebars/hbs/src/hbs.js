@@ -7,6 +7,11 @@ let testArr    =   [{
     title: 'bombacha_campo',
     price: 2100,
     thumbnail:  'https://http2.mlstatic.com/D_NQ_NP_725692-MLA42273703592_062020-W.jpg'
+},
+{
+    title: 'faja',
+    price: 1200,
+    thumbnail:  'https://http2.mlstatic.com/D_NQ_NP_725692-MLA42273703592_062020-W.jpg'
 }
 ];
 
@@ -15,10 +20,12 @@ let testArr    =   [{
 const   express =   require('express');
 const   {engine}  =   require('express-handlebars');
 
-const   PORT  =  8080;
+const   PORT  =  8081;
 const app   =   express();
+
 app.use(express.json());
 app.use(express.urlencoded({extended:   true}));
+
 app.use(express.static("public"));
 
 app.set('views',    './src/views');
@@ -44,7 +51,7 @@ app.get('/productos',   (req,   res)    =>{
     res.status(200).render('main_list', {
         testArr,
     });
-    console.log(testArr);
+    
     
     
 
@@ -53,17 +60,12 @@ app.get('/productos',   (req,   res)    =>{
 
 app.post('/productos',  (req,   res)    =>  {
     const   {body}  =   req;
-    let arrayObj =   [body];
+    const arrayObj =   {...body};
     
-    console.log('SOY EL BODY')
-    console.log(body);
-    //console.log('aaaaaa'+arrayObj);
-
     testArr.push(arrayObj);
     
     res.status(200).redirect('/');
-    
-    
+    //res.json(req.body).status(200);
 });
 
 

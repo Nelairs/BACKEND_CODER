@@ -1,0 +1,25 @@
+html
+    head 
+        
+        title='Lista de productos con PUG'
+    body 
+
+        table
+            tr
+                th='Producto' 
+                th='Precio'
+                th='Imagen'
+            
+            each val in testArr 
+                tr
+                    td=val.title
+                    td=val.price
+                    tdimg(src="https://uploads-ssl.webflow.com/5f4d2915aacbff8a3255cf1b/60b68f6a34b2e95700900f3b_coderhouse-logo.svg", height="50px",    width="150px")
+
+        //ul
+            each  val   in testArr
+                li= 'PRODUCTO: '  +   val.title   +   ' PRECIO: $' +   val.price
+                br
+            
+
+    a(href="/")='Ir a form'

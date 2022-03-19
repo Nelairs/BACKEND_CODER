@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+
+        table,  th, td{
+            border: 1px solid   black;
+        }
+    </style>
+<head>
+    <%- include('../partials/head') %>
+    <!--link   rel="stylesheet"    href="../../public/style.css"-->
+</head>
+<body>
+
+    <h1>Lista productos</h1>
+
+    <table  style="width:100%;">
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+        </tr>
+        <%  testArr.forEach(function(producto){  %>
+            <tr>
+                <td><%= producto.title  %></td>
+                <td><%= producto.price  %></td>
+                <td><img src="https://uploads-ssl.webflow.com/5f4d2915aacbff8a3255cf1b/60b68f6a34b2e95700900f3b_coderhouse-logo.svg" height="50px"    width="150px"></td>
+            </tr>
+        <%    })%>
+    </table>
+
+    <!--ul>
+        <%  testArr.forEach(function(producto){  %>
+        <li>
+            <b>Producto:</b>   <%= producto.title  %>
+
+            <b>Precio:</b>     <%= producto.price  %>
+        </li>
+        <%    })%>
+        
+        <br>
+    </ul-->
+
+    <a href="/">Ir a form</a>
+</body>
+</html>
