@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <title>WEBSOCKETS</title>
+</head>
+<body>
+
+    
+    <script>
+        const   socket  =   io();
+
+        socket.on('listBack',   (data)  =>  {
+            //console.log('Recibido de Backend:', data);
+
+            let innerText   =   '';
+            data.map((message)  =>  {
+                innerText+=`
+                    <li>
+                        <div><b>Producto:</b> ${message.title}</div><div><b>Precio:</b>    ${message.price}</div>
+                        
+                    </li>
+                
+                `
+            })
+
+            document.getElementById('listaProd').innerHTML  =   innerText
+        })
+
+        socket.on('listMsj',   (data)  =>  {
+            //console.log('Recibido de Backend:', data);
+
+            let innerText   =   '';
+            data.map((message)  =>  {
+                innerText+=`
+                    <li>
+                    <b style="color: blue;">${message.email}</b>
+                     <time style="color: brown;">[${message.time}] </time>
+                     <i style="color: green;">:${message.message}</i>
+                     </li>
+                                           
+                `
+            })
+
+            document.getElementById('listaMsj').innerHTML  =   innerText
+        })
+
+        
+    </script>
+
+
+    {{{body}}}
+
+    
+    
+</body>
+</html>

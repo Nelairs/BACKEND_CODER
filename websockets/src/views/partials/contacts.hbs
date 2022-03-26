@@ -1,0 +1,40 @@
+<script>
+    //HABILITAR DESHABILITAR BOTON SEGUN MAIL 
+        function    enableDisable(enterEmail)   {
+            let btnSubmit   =   document.getElementById('btnSubmit');
+
+                if(enterEmail.value.trim()  !=  ''){
+                    btnSubmit.disabled  =   false;
+                
+                }else{
+                    btnSubmit.disabled =    true;
+                }
+        }
+
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+
+        document.getElementById("currentDateTime").value = dateTime;
+        </script>
+
+
+<fieldset>
+
+    <form action="/contacts" method="POST">
+        <h1>CENTRO DE MENSAJES</h1>
+    
+        <div>
+        <input id="enterEmail" type="text" name="email" placeholder="blabla@mail.com" onkeyup="enableDisable(this)">
+        
+        <input type="text" id="currentDateTime" name="time" hidden>
+        </div>
+    
+    
+        <ul style="border: 1px solid;" id="listaMsj"></ul>
+
+        <input type="text" name="message" placeholder="Ingrese un mensaje!">
+        <button id="btnSubmit" disabled="disabled" >Enviar.</button>
+    </form>
+</fieldset>
