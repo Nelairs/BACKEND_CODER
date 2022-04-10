@@ -1,0 +1,18 @@
+<%- include('./templates/header',   {tituloWeb:'Listado productos'})%>
+
+  <h1 class="text-white bg-dark text-center border border-white">Lista productos</h1>
+
+
+<% arrayProd.forEach(prod => { %>
+  <div class="card" style="width: 18rem;">
+    <img src="<%= prod.thumbnail %>" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= prod.title %></h5>
+      <p class="card-text">$<%= prod.price %></p>
+      <a href="#" class="btn btn-dark">Go somewhere</a>
+    </div>
+  </div>  
+<% }) %>
+
+
+<%- include('./templates/footer')%>
