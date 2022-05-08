@@ -1,0 +1,21 @@
+<%- include('./templates/header',   {tituloWeb:'Index'})%>
+<h1 class="text-white bg-dark text-center border border-white">Log In Panel Administrador</h1>
+<fieldset >
+    <form action="/api/login"   method="POST">
+
+        <div class="input-group mb-3">
+            <input type="text" name="user"  class="form-control"    placeholder="Usuario">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><img src="https://cdn2.iconfinder.com/data/icons/files-folders-line/100/rename-512.png" height="25px"    width="25px"></span>
+            <input type="password" class="form-control" name="pass" placeholder="Contrasena" aria-label="Titulo" aria-describedby="basic-addon1">
+        </div>
+        
+        
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-success   align-content-center"  method="POST">Login</button>
+        </div>
+    </form>  
+</fieldset>
+<%- include('./templates/footer')%>
