@@ -1,0 +1,27 @@
+<%- include('./templates/header',   {tituloWeb:'Listado productos'})%>
+
+  <h1 class="text-white bg-dark text-center border border-white">Lista productos</h1>
+
+<div class="row">
+  <% arrayProd.forEach(prod => { %>
+  <div class="col">
+    <div class="card">
+      <img src="<%= prod.thumbnail %>" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title"><%= prod.title %></h5>
+        <p class="card-text">$<%= prod.price %></p>
+        
+        <div class="d-grid gap-2">
+          <form action="/api/carrito" method="post">
+            <input type="text" name="title"  value="<%= prod.title %>"  hidden><input type="number" name="price" value="<%= prod.price %>"hidden><input type="text"  name="thumbnail" value="<%= prod.thumbnail %>"hidden>
+            <button class="btn btn-outline-dark" type="submit"  method="POST" >Agregar a carrito</button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+
+</div>
+<%- include('./templates/footer')%>
