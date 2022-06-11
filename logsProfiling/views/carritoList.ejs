@@ -1,0 +1,31 @@
+<%- include('./templates/header',   {tituloWeb:'Listado carrito'})%>
+
+  <h1 class="text-white bg-dark text-center border border-white">Lista carrito</h1>
+
+
+
+<div class="row">
+  <% arrayCarrito.forEach(prod => { %>
+  <div class="col">
+    <div class="card">
+      <img src="<%= prod.thumbnail %>" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title"><%= prod.title %></h5>
+        <p class="card-text">$<%= prod.price %></p>
+        <p class="card-text"><%= prod.id %></p>
+        <div class="d-grid gap-2">
+            <form action="/api/carrito/delete" method="get">
+                <input type="number"    value="<%= prod.id %>" hidden>
+                <button class="btn btn-outline-danger" type="submit" >Eliminar</button>
+            </form>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+
+</div>
+
+
+<%- include('./templates/footer')%>
