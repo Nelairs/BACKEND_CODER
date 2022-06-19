@@ -2,7 +2,7 @@
   "name": "primerentregafinal",
   "version": "1.0.0",
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "description": "",
   "main": "./app.js",
@@ -11,7 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "app": "nodemon --inspect app"
   },
-  "keywords": [],
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
