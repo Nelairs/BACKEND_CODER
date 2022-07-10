@@ -1,0 +1,12 @@
+<%- include('./templates/header',   {tituloWeb:'Index'})%>
+
+    <h1 class="text-primary">INFORMACION PROCESS</h1>
+    <% processData.forEach(element => { %>
+        <p class="card-text">OS: <%= element.os %></p>
+        <p class="card-text">Node Version: <%= element.nodeVersion %></p>
+        <p class="card-text">Uso de memoria: <%= element.memoriaUso %></p>
+        <p class="card-text">Path: <%= element.path %></p>
+        <p class="card-text">Process ID:<%= element.processID %></p>
+    <% }) %>
+       
+    <%- include('./templates/footer')%>
