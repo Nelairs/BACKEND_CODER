@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { DbModel } from "./modules/db.models.js";
+import { DbModel } from "../modules/db.models.js";
 
 
 

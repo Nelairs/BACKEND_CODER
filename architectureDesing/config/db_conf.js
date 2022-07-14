@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI, (err)   =>  {
+mongoose.connect(process.env.MONGO_URI_CLOUD, (err)   =>  {
     if(err){
         console.log('No se pudo conectar a MongoDB')
     }else{

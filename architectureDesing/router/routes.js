@@ -6,7 +6,7 @@ import  log4js  from    '../log/log.config.js';
 let arrayProd   =   [];
 
 
-import * as dbMethods from '../dbMethods.js'
+import * as dbMethods from '../DAOs/dbMethods.js'
 import { Router } from 'express';
 import compression from 'compression';
 const   router  =   Router();
