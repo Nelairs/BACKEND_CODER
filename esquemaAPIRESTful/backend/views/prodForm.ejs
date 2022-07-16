@@ -1,0 +1,74 @@
+<%- include('./templates/header',   {tituloWeb:'Index'})%>
+<h1 class="text-white bg-dark text-center border border-white">Carga de productos</h1>
+<fieldset >
+    <form action="/api/productos"   method="POST">
+
+        <div class="input-group mb-3">
+            <input type="number" name="id"  class="form-control"    placeholder="ID producto a cambiar" value="" hidden>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><img src="https://cdn2.iconfinder.com/data/icons/files-folders-line/100/rename-512.png" height="25px"    width="25px"></span>
+            <input type="text" class="form-control" name="title" placeholder="Titulo producto" aria-label="Titulo" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2"><img src="https://cdn0.iconfinder.com/data/icons/business-and-finance-86/512/business_finance_money-11-2-256.png" height="25px"    width="25px"></span>
+            <input type="number" class="form-control" name="price" placeholder="Precio" aria-label="Precio" aria-describedby="basic-addon2"> 
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2"><img src="https://cdn4.iconfinder.com/data/icons/multimedia-75/512/multimedia-49-256.png" height="25px"    width="25px"></span>
+            <input type="url" class="form-control" name="thumbnail" placeholder="URL a imagen" aria-label="Imagen" aria-describedby="basic-addon2"> 
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-success   align-content-center"  method="POST">Cargar</button>
+        </div>
+    </form>  
+</fieldset>
+<h1 class="text-white bg-dark text-center border border-white">Actualizar productos</h1>
+<fieldset >
+    <form action="/api/productos/put"   method="POST">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2"><img src="https://cdn2.iconfinder.com/data/icons/interface-vol-2-1/16/finger-print-touch-id-identity-256.png" height="25px"    width="25px"></span>
+            <input type="text" name="titleUpdate"  class="form-control"    placeholder="Nombre producto a cambiar">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><img src="https://cdn2.iconfinder.com/data/icons/files-folders-line/100/rename-512.png" height="25px"    width="25px"></span>
+            <input type="text" class="form-control" name="title" placeholder="Titulo producto" aria-label="Titulo" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2"><img src="https://cdn0.iconfinder.com/data/icons/business-and-finance-86/512/business_finance_money-11-2-256.png" height="25px"    width="25px"></span>
+            <input type="number" class="form-control" name="price" placeholder="Precio" aria-label="Precio" aria-describedby="basic-addon2"> 
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2"><img src="https://cdn4.iconfinder.com/data/icons/multimedia-75/512/multimedia-49-256.png" height="25px"    width="25px"></span>
+            <input type="url" class="form-control" name="thumbnail" placeholder="URL a imagen" aria-label="Imagen" aria-describedby="basic-addon2"> 
+        </div>
+
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-success   align-content-center"  method="POST">Actualizar</button>
+        </div>
+    </form>  
+</fieldset>
+<h1 class="text-white bg-dark text-center border border-white">Borrar productos</h1>
+
+<fieldset >
+    <form action="/api/productos/delete"   method="POST">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2"><img src="https://cdn2.iconfinder.com/data/icons/interface-vol-2-1/16/finger-print-touch-id-identity-256.png" height="25px"    width="25px"></span>
+            <input type="text" name="titleUpdate"  class="form-control"    placeholder="Nombre producto a borrar">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-danger   align-content-center"  method="POST">Borrar</button>
+        </div>
+    </form>  
+</fieldset>
+<%- include('./templates/footer')%>
