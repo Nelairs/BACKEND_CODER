@@ -1,5 +1,6 @@
 import  process from    'process';
 import  log4js  from    '../log/log.config.js';
+import cors from "cors";
 
 
 
@@ -7,9 +8,12 @@ let arrayProd   =   [];
 
 
 import * as dbMethods from '../DAOs/dbMethods.js'
-import { Router } from 'express';
+import express,{ Router } from 'express';
 import compression from 'compression';
+
 const   router  =   Router();
+const app = express();
+app.use(cors());
 
 
 
@@ -23,7 +27,7 @@ router.get('/productos',   (req,   res)    =>{
         .then(function(v)   {
             arrayProd = [];
             arrayProd =   v; 
-            res.status(200).render('prodListUser',  {
+            res.status(200).send(arrayProd).render('prodListUser',  {
                 arrayProd
             })
         })
@@ -129,7 +133,7 @@ router.get('/info', (req,   res)    =>  {
     
 
 
-    res.status(200).render('info',  {
+    res.status(200).send(processData).render('info',  {
         processData
     })
     const   loggerConsole   =   log4js.getLogger('consoleLog');

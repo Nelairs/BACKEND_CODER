@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import  router    from    './router/routes.js'
 import express from 'express';
+import cors from 'cors';
 import minimist from 'minimist';
 import cluster from 'node:cluster';
 import { cpus } from 'node:os';
@@ -28,6 +29,7 @@ const   {port, mode} =   minimist(process.argv.slice(2), options);
 //console.log(port);
 //console.log(mode);
 const app   =   express();
+app.use(cors())
 const __dirname =   './'
 app.set('view engine',  'ejs');
 app.set('views',    __dirname   +   '/views');
