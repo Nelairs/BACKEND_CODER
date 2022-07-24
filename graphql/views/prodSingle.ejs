@@ -1,0 +1,29 @@
+<%- include('./templates/header',   {tituloWeb:'Listado productos'})%>
+
+
+    <h1 class="text-primary">Lista productos</h1>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#id</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Imagen</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                     <th scope="row"></th>
+                     <td> <%= arrayAux.title %> </td>
+                     <td>$<%= arrayAux.price %> </td>
+                     <td> <img src="<%= arrayAux.thumbnail %>" height="100px"    width="100px"> </td>
+                 </tr>
+                              
+            </tbody>
+          </table>
+    </div>
+
+
+<%- include('./templates/footer')%>
